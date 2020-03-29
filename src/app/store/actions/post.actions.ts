@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { PostItem } from '../../models/PostItem.model';
 
-export enum postActionTypes {
+export enum PostActionTypes {
   LOAD_POST = '[POST] Load post',
   LOAD_POST_SUCCESS = '[POST] Load post Success',
   LOAD_POST_FAILURE = '[POST] Load post Failure',
@@ -13,60 +13,60 @@ export enum postActionTypes {
   DELETE_ITEM_FAILURE = '[POST] Delete Item Failure'
 }
 
-export class LoadpostAction implements Action {
-  readonly type = postActionTypes.LOAD_POST
+export class LoadPostAction implements Action {
+  readonly type = PostActionTypes.LOAD_POST
 }
 export class LoadpostSuccessAction implements Action {
-  readonly type = postActionTypes.LOAD_POST_SUCCESS
+  readonly type = PostActionTypes.LOAD_POST_SUCCESS
 
   constructor(public payload: Array<PostItem>) {}
 
 }
 export class LoadpostFailureAction implements Action {
-  readonly type = postActionTypes.LOAD_POST_FAILURE
+  readonly type = PostActionTypes.LOAD_POST_FAILURE
   
   constructor(public payload: Error) {}
 }
 
 export class AddItemAction implements Action {
-  readonly type = postActionTypes.ADD_ITEM
+  readonly type = PostActionTypes.ADD_ITEM
 
   constructor(public payload: PostItem) { }
 }
 export class AddItemSuccessAction implements Action {
-  readonly type = postActionTypes.ADD_ITEM_SUCCESS
+  readonly type = PostActionTypes.ADD_ITEM_SUCCESS
 
   constructor(public payload: PostItem) { }
 }
 export class AddItemFailureAction implements Action {
-  readonly type = postActionTypes.ADD_ITEM_FAILURE
+  readonly type = PostActionTypes.ADD_ITEM_FAILURE
 
   constructor(public payload: Error) { }
 }
 
 export class DeleteItemAction implements Action {
-  readonly type = postActionTypes.DELETE_ITEM
+  readonly type = PostActionTypes.DELETE_ITEM
 
   constructor(public payload: string) { }
 }
 
 export class DeleteItemSuccessAction implements Action {
-  readonly type = postActionTypes.DELETE_ITEM_SUCCESS
+  readonly type = PostActionTypes.DELETE_ITEM_SUCCESS
 
   constructor(public payload: string) { }
 }
 export class DeleteItemFailureAction implements Action {
-  readonly type = postActionTypes.DELETE_ITEM_FAILURE
+  readonly type = PostActionTypes.DELETE_ITEM_FAILURE
 
   constructor(public payload: string) { }
 }
 
-export type postAction = AddItemAction |
+export type PostAction = AddItemAction |
   AddItemSuccessAction |
   AddItemFailureAction |
   DeleteItemAction |
   DeleteItemSuccessAction |
   DeleteItemFailureAction |
-  LoadpostAction |
+  LoadPostAction |
   LoadpostFailureAction |
   LoadpostSuccessAction
