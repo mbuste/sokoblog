@@ -9,6 +9,7 @@ import { delay } from 'rxjs/operators';
 export class PostService {
 
   private POST_URL = "https://jsonplaceholder.typicode.com/posts"
+  // private POST_URL = "http://localhost:3000/post"
 
   constructor(private http: HttpClient) { }
 

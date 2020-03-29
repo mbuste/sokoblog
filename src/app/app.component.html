@@ -1,15 +1,49 @@
 <div id="wrapper">
+
+  <form class="form" (ngSubmit)="addItem()">
+
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="newPostItem.title" placeholder="title" name="itemTitle">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>userid</mat-label>
+      <input matInput [(ngModel)]="newPostItem.userid" placeholder="userid" name="itemUserid">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Body</mat-label>
+      <textarea matInput [(ngModel)]="newPostItem.body"  name="itemBody" placeholder="Type your post here..."></textarea>
+    </mat-form-field>
+    <button type="submit">+ add post</button>
+  </form>
+
   <div [class.loading]="(loading$ | async)" id="post-list" *ngIf="!(error$ | async); else error">
     <div id="list">
       <h2>
         Post List
       </h2>
-
-        <ul *ngIf="(postItems | async); else noPosts">
-          <li *ngFor="let post of postItems | async" (click)="deleteItem(post.id)">
-            <span>{{ post.title }}</span>
-          </li>
-        </ul>
+      <div class='row' *ngIf="(postItems | async); else noPosts">
+        <div class='col-md-4' *ngFor="let post of postItems | async">
+          <mat-card class="blog-card">
+            <div class="overlay">
+              <mat-card-header>
+                <mat-card-title>{{post.title.substring(0,15)}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  {{post.body.substring(0,120)}}
+                </p>
+              </mat-card-content>
+              <button class='details-btn'>view details</button>
+            </div>
+          </mat-card>
+          <div class='icon'>
+          <button  (click)="deleteItem(post.id)"><i class="far fa-trash-alt"></i></button>
+          <button ><i class="fas fa-pen"></i></button>
+        </div>
+        </div>
+      </div>
 
       <ng-template #noPosts>
         <ul>
@@ -18,15 +52,9 @@
       </ng-template>
     </div>
 
-    <form (ngSubmit)="addItem()">
-      <input type="text" [(ngModel)]="newPostItem.title" placeholder="title" name="itemTitle"/>
-      <input type="text" [(ngModel)]="newPostItem.body" placeholder="body" name="itemBody"/>
-      <input type="text" [(ngModel)]="newPostItem.userid" placeholder="user" name="itemUserid"/>
-      <button type="submit" >+</button>
-    </form>
   </div>
 </div>
 
 <ng-template #error>
-  <h2>{{(error$ | async)?.message}}</h2>
+  <h2 class='alert-danger'>{{(error$ | async)?.message}}</h2>
 </ng-template>

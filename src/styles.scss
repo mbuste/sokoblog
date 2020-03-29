@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -19,7 +18,11 @@ $sokoblog-accent: mat-palette($mat-pink, A200, A100, A400);
 $sokoblog-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$sokoblog-theme: mat-light-theme($sokoblog-primary, $sokoblog-accent, $sokoblog-warn);
+$sokoblog-theme: mat-light-theme(
+  $sokoblog-primary,
+  $sokoblog-accent,
+  $sokoblog-warn
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -28,5 +31,29 @@ $sokoblog-theme: mat-light-theme($sokoblog-primary, $sokoblog-accent, $sokoblog-
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+  transform: 0.5s;
+  color: #000000;
+  background-color: #ffffff;
+  border: solid 1px #000000;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+button:hover {
+  background-color: #ff5224;
+  color: #ffffff;
+}
+
+.col-md-4{
+    margin-top: 40px;
+}

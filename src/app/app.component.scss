@@ -1,0 +1,59 @@
+.blog-card {
+  max-width: 451px;
+  height: 400px;
+  background: #ffffff;
+  text-align: center;
+  .overlay {
+    position: relative;
+    margin: 10%;
+    border: none;
+    outline: none;
+    height: 80%;
+    width: 80%;
+    background: #707070;
+    padding: 20px;
+  }
+  mat-card-title {
+    color: #ff5224;
+    font-size: 30px;
+  }
+
+  mat-card-content {
+    color: #ffffff;
+    p {
+      padding-left: 10px;
+      padding-top: 40px;
+      text-align: left;
+      text-justify: auto;
+      font-size: 0.8rem;
+      letter-spacing: 0.2rem;
+    }
+  }
+
+  .details-btn {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 40px;
+
+  .full-width {
+    width: 100%;
+  }
+}
+
+.icon{
+  margin-top: 4px;
+  position: absolute;
+  left: 80%;
+
+  button{
+    margin-left: 10px;
+  }
+}

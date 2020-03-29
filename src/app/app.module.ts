@@ -13,6 +13,11 @@ import { PostReducer } from './store/reducers/post.reducer'
 import { PostEffects } from './store/effects/post.effects'
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms'
+import { MatCardModule } from '@angular/material/card'
+import {MatButtonModule} from '@angular/material/button'
+import {MatInputModule} from '@angular/material/input'
+import {MatFormFieldModule} from '@angular/material/form-field'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,10 +27,14 @@ import { FormsModule } from '@angular/forms'
     StoreModule.forRoot({ post: PostReducer }, {}),
     EffectsModule.forRoot([PostEffects]),
     HttpClientModule,
+    MatCardModule,
+    MatButtonModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
