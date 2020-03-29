@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PostReducer } from './store/reducers/post.reducer'
-
+import { PostEffects } from './store/effects/post.effects'
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +18,7 @@ import { PostReducer } from './store/reducers/post.reducer'
   imports: [
     BrowserModule,
     StoreModule.forRoot({ post: PostReducer }, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([PostEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule
