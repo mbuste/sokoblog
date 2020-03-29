@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PostReducer } from './store/reducers/post.reducer'
 import { PostEffects } from './store/effects/post.effects'
+import { MaterialModule } from './material.module'
+import { FormsModule } from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +23,9 @@ import { PostEffects } from './store/effects/post.effects'
     EffectsModule.forRoot([PostEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

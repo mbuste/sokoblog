@@ -6,18 +6,24 @@
       </h2>
 
         <ul *ngIf="(postItems | async); else noPosts">
-          <li *ngFor="let post of postItems | async">
+          <li *ngFor="let post of postItems | async" (click)="deleteItem(post.id)">
             <span>{{ post.title }}</span>
           </li>
         </ul>
 
       <ng-template #noPosts>
         <ul>
-          <li style="max-width:250px;margin:0 auto;">No posts to display.</li>
+          <li style="max-width:250px;margin:0 auto;">No Posts to Display</li>
         </ul>
       </ng-template>
     </div>
-    
+
+    <form (ngSubmit)="addItem()">
+      <input type="text" [(ngModel)]="newPostItem.title" placeholder="title" name="itemTitle"/>
+      <input type="text" [(ngModel)]="newPostItem.body" placeholder="body" name="itemBody"/>
+      <input type="text" [(ngModel)]="newPostItem.userid" placeholder="user" name="itemUserid"/>
+      <button type="submit" >+</button>
+    </form>
   </div>
 </div>
 
