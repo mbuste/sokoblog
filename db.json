@@ -1,0 +1,16 @@
+{
+    "post":[
+        {
+            "id":1,
+            "userid": 2,
+            "title":"why blog",
+            "body":"this is the body of the post"
+        },
+        {
+            "id":2,
+            "userid": 1,
+            "title":"blog title second",
+            "body":"this is the body of the post"
+        }
+    ]
+}
