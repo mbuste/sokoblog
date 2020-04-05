@@ -14,20 +14,14 @@ import { PostEffects } from './store/effects/post.effects'
 import { CommentEffects } from './store/effects/comment.effects'
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { PostListComponent } from './components/post-list/post-list.component';
-import { PostCarrdComponent } from './components/post-carrd/post-carrd.component';
-import { PostDetailComponent } from './components/post-detail/post-detail.component'
+import { AppRoutingModule, routingComponents } from './app.routing'
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
-    PostListComponent,
-    PostCarrdComponent,
-    PostDetailComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,
@@ -38,7 +32,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
