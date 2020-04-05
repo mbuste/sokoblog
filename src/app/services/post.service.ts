@@ -15,22 +15,13 @@ export class PostService {
 
   getPostItems() {
     return this.http.get<Array<PostItem>>(this.POST_URL)
-      .pipe(
-      delay(500)
-    )
   }
 
   addPostItem(postItem: PostItem) {
     return this.http.post(this.POST_URL, postItem)
-      .pipe(
-        delay(500)
-      )
   }
 
   deletePostItem(id: string) {
     return this.http.delete(`${this.POST_URL}/${id}`)
-      .pipe(
-        delay(500)
-      )
   }
 }

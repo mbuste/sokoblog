@@ -1,16 +1,52 @@
 {
-    "post":[
-        {
-            "id":1,
-            "userid": 2,
-            "title":"why blog",
-            "body":"this is the body of the post"
-        },
-        {
-            "id":2,
-            "userid": 1,
-            "title":"blog title second",
-            "body":"this is the body of the post"
-        }
+    "post": [
+      {
+        "id": 1,
+        "userid": 2,
+        "title": "why blog",
+        "body": "this is the body of the post"
+      },
+      {
+        "id": 2,
+        "userid": 1,
+        "title": "blog title second",
+        "body": "this is the body of the post"
+      },
+      {
+        "id": 3,
+        "userid": "1",
+        "title": "test blog 3",
+        "body": "the test blog"
+      }
+    ],
+    "comments":[
+      {
+        "id":1,
+        "postid":1,
+        "name":"hjg jnblnl inn ",
+        "email": "email@gmail.com",
+        "body":"agbiu uhuiah hskfbk jklad "
+      },
+      {
+        "id":2,
+        "postid":1,
+        "name":"hjg jnblnl inn ",
+        "email": "email@gmail.com",
+        "body":"agbiu uhuiah hskfbk jklad "
+      },
+      {
+        "id":3,
+        "postid":2,
+        "name":"hjg jnblnl inn ",
+        "email": "email@gmail.com",
+        "body":"agbiu uhuiah hskfbk jklad "
+      },
+      {
+        "id":4,
+        "postid":2,
+        "name":"hjg jnblnl inn ",
+        "email": "email@gmail.com",
+        "body":"agbiu uhuiah hskfbk jklad "
+      }
     ]
-}
+  }

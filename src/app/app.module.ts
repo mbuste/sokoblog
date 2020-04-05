@@ -9,7 +9,6 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PostReducer } from './store/reducers/post.reducer'
 import {reducers} from './store/reducers/index.reducer'
 import { PostEffects } from './store/effects/post.effects'
 import { MaterialModule } from './material.module'

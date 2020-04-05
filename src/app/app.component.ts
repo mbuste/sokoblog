@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     this.error$ = this.store.select(store => store.post.error);
 
     this.store.dispatch(new LoadPostAction());
-  }
+    }
   deleteItem(id: string) {
     this.store.dispatch(new DeleteItemAction(id));
   }
