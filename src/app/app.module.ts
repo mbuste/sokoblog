@@ -9,8 +9,9 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {reducers} from './store/reducers/index.reducer'
+import { reducers } from './store/reducers/index.reducer'
 import { PostEffects } from './store/effects/post.effects'
+import { CommentEffects } from './store/effects/comment.effects'
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms'
 
@@ -20,14 +21,14 @@ import { FormsModule } from '@angular/forms'
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot( reducers),
-    EffectsModule.forRoot([PostEffects]),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([PostEffects, CommentEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
