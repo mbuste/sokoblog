@@ -24,4 +24,8 @@ export class PostService {
   deletePostItem(id: string) {
     return this.http.delete(`${this.POST_URL}/${id}`)
   }
+
+  updatePostItem(id: string, postItem: PostItem) {
+    return this.http.put(`${this.POST_URL}/${id}`, postItem);
+  }
 }
