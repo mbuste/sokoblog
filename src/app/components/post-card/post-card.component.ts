@@ -1,14 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-post-carrd',
-  templateUrl: './post-carrd.component.html',
-  styleUrls: ['./post-carrd.component.scss']
+  selector: 'app-post-card',
+  templateUrl: './post-card.component.html',
+  styleUrls: ['./post-card.component.scss']
 })
-export class PostCarrdComponent implements OnInit {
+export class PostCardComponent implements OnInit {
 
-  @Input() post
+ 
+  @Input() public post;
+
   selectedid;
 
   constructor(private router: Router, private route: ActivatedRoute) { }

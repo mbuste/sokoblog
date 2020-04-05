@@ -15,13 +15,15 @@ import { CommentEffects } from './store/effects/comment.effects'
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AppRoutingModule, routingComponents } from './app.routing'
+import { AppRoutingModule, routingComponents } from './app.routing';
+import { PostCardComponent } from './components/post-card/post-card.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    routingComponents
+    routingComponents,
+    PostCardComponent
   ],
   imports: [
     BrowserModule,
