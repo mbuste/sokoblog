@@ -23,7 +23,7 @@ export class CommentsService {
     return this.http.delete(`${this.uri}/${id}`)
   }
 
-  updateCommentItem(id: string, postItem: CommentItem) {
-    return this.http.put(`${this.uri}/${id}`, postItem);
+  updateCommentItem( postItem: CommentItem) {
+    return this.http.put(`${this.uri}/${postItem.id}`, postItem);
   }
 }
