@@ -2,8 +2,8 @@
     <h2>
         Post List
     </h2>
-    <div class='row' *ngIf="(postItems | async); else noPosts">
-        <app-post-card class='col-md-4' *ngFor="let post of postItems | async" [post]="post"></app-post-card>
+    <div class='row' *ngIf="(postItems$ | async); else noPosts">
+        <app-post-card class='col-md-4' *ngFor="let post of postItems$ | async" [post]="post"></app-post-card>
     </div>
 
     <ng-template #noPosts>
