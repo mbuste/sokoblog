@@ -6,9 +6,6 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers/comment.reducer';
 import * as fromPostActions from 'src/app/store/actions/post.actions';
 import * as fromPosts from '../../store/reducers/post.reducer'
-import { CommentItem } from 'src/app/models/CommentItem.model';
-import * as fromCommentActions from '../../store/actions/comment.actions'
-import * as fromComment from '../../store/reducers/comment.reducer'
 
 @Component({
   selector: 'app-post-detail',
@@ -20,7 +17,6 @@ export class PostDetailComponent implements OnInit {
   postid;
   post$: Observable<PostItem>
   posts: any = []
-  commenntItems$: Observable<CommentItem[]>;
   loading$: Observable<Boolean>;
   error$: Observable<Error>
   postItems$: Observable<PostItem[]>;

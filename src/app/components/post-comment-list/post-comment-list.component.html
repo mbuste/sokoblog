@@ -1,1 +1,19 @@
-<p>post-comment-list works!</p>
+
+<div [class.loading]="(loading$ | async)" id="post-list" *ngIf="!(error$ | async); else error">
+
+    <div class='container' *ngIf="(comments); else noPosts">
+        <div *ngFor="let comment of comments">
+            <p>{{comment.body}}</p>
+        </div>
+    </div>
+
+    <ng-template #noPosts>
+        <ul>
+            <li style="max-width:250px;margin:0 auto;">No Posts to Display</li>
+        </ul>
+    </ng-template>
+</div>
+
+<ng-template #error>
+    <h2 class='alert-danger'>{{(error$ | async)?.message}}</h2>
+</ng-template>

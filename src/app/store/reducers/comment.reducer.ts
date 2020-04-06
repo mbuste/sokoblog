@@ -79,7 +79,7 @@ export const getComments = createSelector(
   commentAdapter.getSelectors().selectAll
 )
 
-export const getPostsLoading = createSelector(
+export const getCommentsLoading = createSelector(
   getCommentFeatureState,
   (state: CommentState) => state.loading
 )
