@@ -23,8 +23,8 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
     this.postItems$ = this.store.pipe(select(fromPostReducer.getPosts));
-    this.loading$ = this.store.select(store => store.post.loading);
-    this.error$ = this.store.select(store => store.post.error);
+    this.loading$ = this.store.pipe(select(fromPostReducer.getPostsLoading));
+    this.error$ = this.store.pipe(select(fromPostReducer.getPostsError));
     this.store.dispatch(new fromPostActions.LoadPostAction());
   }
 

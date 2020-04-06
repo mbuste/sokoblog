@@ -58,7 +58,7 @@ export class DeleteItemSuccessAction implements Action {
 export class DeleteItemFailureAction implements Action {
   readonly type = PostActionTypes.DELETE_ITEM_FAILURE
 
-  constructor(public payload: string) { }
+  constructor(public payload: Error) { }
 }
 
 export type PostAction = AddItemAction |

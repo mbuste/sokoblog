@@ -1,72 +1,62 @@
 import { PostActionTypes, PostAction } from '../actions/post.actions';
 import { PostItem } from '../../models/postItem.model';
 import { createFeatureSelector, createSelector } from '@ngrx/store'
+import { EntityState, EntityAdapter, createEntityAdapter } from "@ngrx/entity";
 
-export interface PostState {
-  list: PostItem[],
+import * as fromRoot from "../../state/app-state.model";
+
+export interface PostState extends EntityState<PostItem> {
+  selectedPostId: string | null;
   loading: boolean,
   error: Error
 }
 
-const initialState: PostState = {
-  list: [],
+export interface AppState extends fromRoot.AppState {
+  post: PostState
+}
+
+export const postAdapter: EntityAdapter<PostItem> = createEntityAdapter<PostItem>();
+
+export const defaultPost: PostState = {
+  ids: [],
+  entities: {},
+  selectedPostId: null,
   loading: false,
   error: undefined
 };
-export function PostReducer(state: PostState = initialState, action: PostAction) {
+
+export const initialState = postAdapter.getInitialState(defaultPost);
+
+export function PostReducer(state: PostState = initialState, action: PostAction): PostState {
   switch (action.type) {
-    case PostActionTypes.LOAD_POST:
-      return {
-        ...state,
-        loading: true
-      }
+
     case PostActionTypes.LOAD_POST_SUCCESS:
-      return {
+      return postAdapter.addAll(action.payload, {
         ...state,
-        list: action.payload,
         loading: false
-      }
+      })
 
     case PostActionTypes.LOAD_POST_FAILURE:
       return {
         ...state,
+        entities: {},
         error: action.payload,
         loading: false
       }
 
-    case PostActionTypes.ADD_ITEM:
-      return {
-        ...state,
-        loading: true
-      }
     case PostActionTypes.ADD_ITEM_SUCCESS:
-      return {
-        ...state,
-        list: [...state.list, action.payload],
-        loading: false
-      };
+      return postAdapter.addOne(action.payload, state)
     case PostActionTypes.ADD_ITEM_FAILURE:
       return {
-        ...state,
-        error: action.payload,
-        loading: false
+        ...state, error: action.payload
       };
-    case PostActionTypes.DELETE_ITEM:
-      return {
-        ...state,
-        loading: true
-      };
+
     case PostActionTypes.DELETE_ITEM_SUCCESS:
-      return {
-        ...state,
-        list: state.list.filter(item => item.id !== action.payload),
-        loading: false
-      }
+      return postAdapter.removeOne(action.payload, state)
     case PostActionTypes.DELETE_ITEM_FAILURE:
       return {
         ...state,
-        error: action.payload,
-        loading: false
+        error: action.payload
       };
     default:
       return state;
@@ -80,7 +70,7 @@ const getPostFeatureState = createFeatureSelector<PostState>(
 
 export const getPosts = createSelector(
   getPostFeatureState,
-  (state: PostState) => state.list
+  postAdapter.getSelectors().selectAll
 )
 
 export const getPostsLoading = createSelector(
@@ -92,3 +82,14 @@ export const getPostsError = createSelector(
   getPostFeatureState,
   (state: PostState) => state.error
 )
+
+export const getCurrentPostId = createSelector(
+  getPostFeatureState,
+  (state: PostState) => state.selectedPostId
+);
+
+export const getCurrentPost = createSelector(
+  getPostFeatureState,
+  getCurrentPostId,
+  state => state.entities[state.selectedPostId]
+);
