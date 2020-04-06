@@ -2,6 +2,10 @@ import { Action } from '@ngrx/store';
 import { PostItem } from '../../models/PostItem.model';
 
 export enum PostActionTypes {
+  LOAD_POST_BY_ID = "[Post] Load Post By Id",
+  LOAD_POST_BY_ID_SUCCESS = "[Post] Load Post Success By Id",
+  LOAD_POST_BY_ID_FAIL = "[Post] Load Post Fail By Id",
+
   LOAD_POST = '[POST] Load post',
   LOAD_POST_SUCCESS = '[POST] Load post Success',
   LOAD_POST_FAILURE = '[POST] Load post Failure',
@@ -19,14 +23,33 @@ export class LoadPostAction implements Action {
 export class LoadpostSuccessAction implements Action {
   readonly type = PostActionTypes.LOAD_POST_SUCCESS
 
-  constructor(public payload: Array<PostItem>) {}
+  constructor(public payload: Array<PostItem>) { }
 
 }
 export class LoadpostFailureAction implements Action {
   readonly type = PostActionTypes.LOAD_POST_FAILURE
-  
-  constructor(public payload: Error) {}
+
+  constructor(public payload: Error) { }
 }
+
+export class LoadPostById implements Action {
+  readonly type = PostActionTypes.LOAD_POST_BY_ID;
+
+  constructor(public payload: string) { }
+}
+
+export class LoadPostByIdSuccess implements Action {
+  readonly type = PostActionTypes.LOAD_POST_BY_ID_SUCCESS;
+
+  constructor(public payload: PostItem) { }
+}
+
+export class LoadPostByIdFail implements Action {
+  readonly type = PostActionTypes.LOAD_POST_BY_ID_FAIL;
+
+  constructor(public payload: Error) { }
+}
+
 
 export class AddItemAction implements Action {
   readonly type = PostActionTypes.ADD_ITEM
@@ -69,4 +92,4 @@ export type PostAction = AddItemAction |
   DeleteItemFailureAction |
   LoadPostAction |
   LoadpostFailureAction |
-  LoadpostSuccessAction
+  LoadpostSuccessAction | LoadPostById | LoadPostByIdFail | LoadPostByIdSuccess

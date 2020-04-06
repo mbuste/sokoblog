@@ -11,6 +11,7 @@ import {
 } from '../actions/comment.actions'
 import { of } from 'rxjs';
 import { CommentsService } from '../../services/comments.service';
+import { CommentItem } from 'src/app/models/CommentItem.model';
 
 @Injectable()
 export class CommentEffects {
@@ -46,9 +47,13 @@ export class CommentEffects {
         .pipe(
             ofType<UpdateComment>(CommentActionTypes.UPDATE_COMMENT),
             mergeMap(
-                (data) => this.commentService.updateCommentItem(data.id, data.payload)
+                (data) => this.commentService.updateCommentItem(data.payload)
                     .pipe(
-                        map(() => new UpdateCommentSuccess(data.payload)),
+                        map((updateComment: CommentItem) => new UpdateCommentSuccess({
+                            id: updateComment.id,
+                            changes: updateComment
+
+                        })),
                         catchError(error => of(new UpdateCommentFail(error)))
                     )
             )

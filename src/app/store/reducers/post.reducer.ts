@@ -58,6 +58,19 @@ export function PostReducer(state: PostState = initialState, action: PostAction)
         ...state,
         error: action.payload
       };
+
+    case PostActionTypes.LOAD_POST_BY_ID_SUCCESS: {
+      return postAdapter.addOne(action.payload, {
+        ...state,
+        selectedPostId: action.payload.id
+      });
+    }
+    case PostActionTypes.LOAD_POST_BY_ID_FAIL: {
+      return {
+        ...state,
+        error: action.payload
+      };
+    }
     default:
       return state;
   }

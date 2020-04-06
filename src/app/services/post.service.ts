@@ -28,4 +28,9 @@ export class PostService {
   updatePostItem(id: string, postItem: PostItem) {
     return this.http.put(`${this.POST_URL}/${id}`, postItem);
   }
+
+  getPostById(payload: string) {
+    return this.http.get<PostItem>(`${this.POST_URL}/${payload}`);
+  }
+
 }

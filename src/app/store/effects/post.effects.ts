@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
-import { LoadPostAction, PostActionTypes, LoadpostSuccessAction, LoadpostFailureAction, AddItemAction, AddItemSuccessAction, AddItemFailureAction, DeleteItemAction, DeleteItemSuccessAction, DeleteItemFailureAction } from '../actions/post.actions'
+import { LoadPostAction, PostActionTypes, LoadpostSuccessAction, LoadpostFailureAction, AddItemAction, AddItemSuccessAction, AddItemFailureAction, DeleteItemAction, DeleteItemSuccessAction, DeleteItemFailureAction, LoadPostById, LoadPostByIdSuccess, LoadPostByIdFail } from '../actions/post.actions'
 import { of } from 'rxjs';
 import { PostService } from '../../services/post.service';
 
@@ -22,6 +22,23 @@ export class PostEffects {
           )
       ),
     )
+
+  
+    @Effect()
+    loadPostById$ = this.actions$.pipe(
+      ofType<LoadPostById>(
+        PostActionTypes.LOAD_POST_BY_ID
+      ),
+      mergeMap((action: LoadPostById) =>
+        this.postService.getPostById(action.payload).pipe(
+          map(
+            (data) =>
+              new LoadPostByIdSuccess(data)
+          ),
+          catchError(err => of(new LoadPostByIdFail(err)))
+        )
+      )
+    );
 
   @Effect() addPostItem$ = this.actions$
     .pipe(
