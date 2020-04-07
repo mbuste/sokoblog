@@ -17,7 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { PostCardComponent } from './components/post-card/post-card.component';
-import { PostComponentCardComponent } from './components/post-component-card/post-component-card.component';
+import { PostCommentCardComponent } from './components/post-comment-card/post-comment-card.component';
+
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { PostComponentCardComponent } from './components/post-component-card/pos
     NavbarComponent,
     routingComponents,
     PostCardComponent,
-    PostComponentCardComponent,
+    PostCommentCardComponent,
   ],
   imports: [
     BrowserModule,

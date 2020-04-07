@@ -1,11 +1,15 @@
 import { Action } from '@ngrx/store';
 import { CommentItem } from '../../models/CommentItem.model';
 import { Update } from '@ngrx/entity';
+import { LoadPostById, LoadPostByIdSuccess, LoadPostByIdFail } from './post.actions';
 
 export enum CommentActionTypes {
     LOAD_COMMENT = '[COMMENT] Load comment',
     LOAD_COMMENT_SUCCESS = '[COMMENT] Load comment Success',
     LOAD_COMMENT_FAILURE = '[COMMENT] Load comment Failure',
+    LOAD_COMMENT_BY_POST ='[COMMENT] Load Comment By Post',
+    LOAD_COMMENT_BY_POST_SUCCESS ='[COMMENT] Load Comment By Post Success',
+    LOAD_COMMENT_BY_POST_FAIL ='[COMMENT] Load Comment By Post Fail',
     ADD_ITEM = '[COMMENT] Add Item',
     ADD_ITEM_SUCCESS = '[COMMENT] Add Item Success',
     ADD_ITEM_FAILURE = '[COMMENT] Add Item Failure',
@@ -16,6 +20,24 @@ export enum CommentActionTypes {
     UPDATE_COMMENT_SUCCESS = "[COMMENT] Update Comment Success",
     UPDATE_COMMENT_FAIL = "[COMMENT] Update Comment Fail",
 }
+
+export class LoadCommentByPostAction implements Action{
+    readonly type = CommentActionTypes.LOAD_COMMENT_BY_POST
+    constructor(public payload: string) { }
+}
+
+export class LoadcommentByPostSuccess implements Action {
+    readonly type = CommentActionTypes.LOAD_COMMENT_BY_POST_SUCCESS
+
+    constructor(public payload: Array<CommentItem>) { }
+
+}
+export class LoadCommentByPostFail implements Action {
+    readonly type = CommentActionTypes.LOAD_COMMENT_BY_POST_FAIL
+
+    constructor(public payload: Error) { }
+}
+
 
 export class LoadCommentAction implements Action {
     readonly type = CommentActionTypes.LOAD_COMMENT
@@ -88,4 +110,5 @@ export type CommentAction = AddItemAction |
     LoadCommentAction |
     LoadcommentFailureAction |
     LoadcommentSuccessAction |
-    UpdateComment | UpdateCommentSuccess |UpdateCommentFail
+    UpdateComment | UpdateCommentSuccess |UpdateCommentFail |
+    LoadCommentByPostAction | LoadCommentByPostFail | LoadcommentByPostSuccess

@@ -7,10 +7,12 @@ import { HttpClient } from '@angular/common/http'
 })
 export class CommentsService {
 
-  uri="http://localhost:3000/comments"
+  uri = "https://jsonplaceholder.typicode.com/comments"
+  post_comment_uri = "https://jsonplaceholder.typicode.com/posts"
+  // uri="http://localhost:3000/comments"
   constructor(private http: HttpClient) { }
 
-  
+
   getCommentItems() {
     return this.http.get<Array<CommentItem>>(this.uri)
   }
@@ -23,7 +25,11 @@ export class CommentsService {
     return this.http.delete(`${this.uri}/${id}`)
   }
 
-  updateCommentItem( postItem: CommentItem) {
+  updateCommentItem(postItem: CommentItem) {
     return this.http.put(`${this.uri}/${postItem.id}`, postItem);
+  }
+
+  getCommentsByPost(id: string) {
+    return this.http.get<Array<CommentItem>>(`${this.post_comment_uri}/${id}/comments`)
   }
 }

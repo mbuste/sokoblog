@@ -1,0 +1,93 @@
+@use '../../../scss//color';
+
+.blog-card {
+  max-width: 400px;
+  height: 400px;
+  text-align: center;
+  background-color: color.$greylight-color;
+
+  .bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+}
+  .overlay {
+    position: relative;
+    opacity: .9;
+    border: none;
+    outline: none;
+    background: color.$grey-color;
+    padding: 20px;    
+    margin-top: 5%;
+    margin-left: 5%;
+    height: 90%;
+    width: 90%;
+  }
+  mat-card-title {
+    color: color.$main-accent;
+    font-size: 30px;
+  }
+
+  mat-card-content {
+    color: color.$white-color;
+    p {
+      padding-left: 10px;
+      padding-top: 40px;
+      text-align: left;
+      text-justify: auto;
+      font-size: 0.8rem;
+      letter-spacing: 0.2rem;
+    }
+  }
+
+  .details-btn {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.selected {
+  border: solid color.$blue-color 2px;
+}
+
+
+@media(max-width:800px){
+  .blog-card {
+    mat-card-title {
+      font-size: 30px;
+    }
+  
+    mat-card-content {
+      p {
+        font-size: 0.8rem;
+        letter-spacing: 0.2rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 800px){
+.blog-card {
+  
+  mat-card-title {
+    color: color.$main-accent;
+    font-size: 30px;
+  }
+
+  mat-card-content {
+    p {
+      font-size: 0.8rem;
+      letter-spacing: 0.2rem;
+    }
+  }
+
+}
+
+
+}
+
+

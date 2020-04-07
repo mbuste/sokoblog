@@ -43,6 +43,20 @@ export function CommentReducer(state: CommentState = initialState, action: Comme
         loading: false
       }
 
+    case CommentActionTypes.LOAD_COMMENT_BY_POST_SUCCESS:
+      return commentAdapter.addAll(action.payload, {
+        ...state,
+        loading: false
+      })
+
+    case CommentActionTypes.LOAD_COMMENT_BY_POST_FAIL:
+      return {
+        ...state,
+        entities: {},
+        error: action.payload,
+        loading: false
+      }
+
     case CommentActionTypes.ADD_ITEM_SUCCESS:
       return commentAdapter.addOne(action.payload, state)
     case CommentActionTypes.ADD_ITEM_FAILURE:

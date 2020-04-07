@@ -1,15 +1,14 @@
-<h2>the post is {{postid}}</h2>
-<div [class.loading]="(loading$ | async)" id="post-list" *ngIf="!(error$ | async); else error">
+<div class='container-fluid blog-details' [class.loading]="(loading$ | async)" id="post-list" *ngIf="!(error$ | async); else error">
 
-    <div class='container' *ngIf="(posts); else noPosts">
-        <h3> {{posts.title}}</h3><br />
+    <div *ngIf="(posts); else noPosts">
+        <h1 class="title"> {{posts.title}}</h1><br />
         <p>{{posts.body}}</p>
-        <button (click)="viewComments()">responses</button>
+        <button class='responses-btn' (click)="viewComments()">responses</button>
     </div>
 
     <ng-template #noPosts>
         <ul>
-            <li style="max-width:250px;margin:0 auto;">No Posts to Display</li>
+            <li style="max-width:250px;margin:0 auto;">Loading Post details</li>
         </ul>
     </ng-template>
 
@@ -18,6 +17,8 @@
 <ng-template #error>
     <h2 class='alert-danger'>{{(error$ | async)?.message}}</h2>
 </ng-template>
-<button (click)="next()">next</button>
-<button (click)="previous()">previous</button>
-<button (click)="backToList()">Back to List</button>
+<div class='container post-nav'>
+    <button (click)="next()"><i class="fas fa-step-forward"></i>  next</button>
+    <button (click)="previous()"><i class="fas fa-step-backward"></i>  previous</button>
+    <button (click)="backToList()"><i class="fas fa-hand-point-left"></i>  Back to List</button>
+</div>

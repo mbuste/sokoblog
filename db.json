@@ -25,28 +25,28 @@
         "postid":1,
         "name":"comment first",
         "email": "email@gmail.com",
-        "body":"comment first body "
+        "body":"comment post 1 first body "
       },
       {
         "id":2,
         "postid":1,
         "name":"comment second ",
         "email": "email@gmail.com",
-        "body":"comment second body "
+        "body":"comment post 1 second body "
       },
       {
         "id":3,
         "postid":2,
         "name":"hjg jnblnl inn ",
         "email": "email@gmail.com",
-        "body":"agbiu uhuiah hskfbk jklad "
+        "body":"comment post 2 first body "
       },
       {
         "id":4,
         "postid":2,
         "name":"hjg jnblnl inn ",
         "email": "email@gmail.com",
-        "body":"agbiu uhuiah hskfbk jklad "
+        "body":"comment post 2 first body "
       }
     ]
   }

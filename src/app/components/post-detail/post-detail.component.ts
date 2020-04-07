@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers/comment.reducer';
 import * as fromPostActions from 'src/app/store/actions/post.actions';
 import * as fromPosts from '../../store/reducers/post.reducer'
+import * as fromComment from '../../store/actions/comment.actions'
 
 @Component({
   selector: 'app-post-detail',
@@ -40,14 +41,14 @@ export class PostDetailComponent implements OnInit {
     this.loading$ = this.store.pipe(select(fromPosts.getPostsLoading));
     this.error$ = this.store.pipe(select(fromPosts.getPostsError));
     this.store.dispatch(new fromPostActions.LoadPostAction());
-    this.postItems$ = this.store.pipe(select(fromPosts.getPosts));
-    this.subscribeToPostItems()
-  }
-
-  subscribeToPostItems() {
-    this.postItems$.subscribe(posts => {
-      this.posts = posts.find(post => post.id == this.postid)
+    this.store.dispatch(new fromPostActions.LoadPostById(this.postid));
+    this.post$ = this.store.pipe(select(fromPosts.getCurrentPost))
+    this.post$.subscribe(val => {
+      if (val) {
+        this.posts = val
+      }
     })
+    this.postItems$ = this.store.pipe(select(fromPosts.getPosts));
   }
 
   next() {
@@ -66,6 +67,8 @@ export class PostDetailComponent implements OnInit {
   }
 
   viewComments() {
+    this.store.dispatch(new fromPostActions.LoadPostById(this.postid))
+    this.store.dispatch(new fromComment.LoadCommentByPostAction(this.postid))
     this.router.navigate(['/posts', this.postid, "comments"])
   }
 }

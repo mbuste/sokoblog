@@ -1,0 +1,9 @@
+@use '../../../scss/color';
+
+.comment-card{
+    border: solid 1px color.$greylight-color;
+    border-radius: 10px;
+    margin-top: 40px;
+    padding: 20px;
+    padding-left: 40px;
+}

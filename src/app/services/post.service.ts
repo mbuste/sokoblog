@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PostItem } from '../models/postItem.model';
-import { delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  // private POST_URL = "https://jsonplaceholder.typicode.com/posts"
-  private POST_URL = "http://localhost:3000/post"
+  private POST_URL = "https://jsonplaceholder.typicode.com/posts"
+  // private POST_URL = "http://localhost:3000/post"
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +30,7 @@ export class PostService {
     return this.http.put(`${this.POST_URL}/${id}`, postItem);
   }
 
-  getPostById(payload: string) {
+  getPostById(payload: string):Observable<PostItem> {
     return this.http.get<PostItem>(`${this.POST_URL}/${payload}`);
   }
 

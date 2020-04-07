@@ -1,15 +1,25 @@
-
-<div [class.loading]="(loading$ | async)" id="post-list" *ngIf="!(error$ | async); else error">
+<div [class.loading]="(loading$ | async)" id="comment-list" *ngIf="!(error$ | async); else error">
 
     <div class='container' *ngIf="(comments); else noPosts">
+        <div>
+            <h1>Showing comments for:</h1>
+            <div class='blog-name'>
+                <h1>{{(post$ | async)?.title}}</h1>
+                <h3>author name</h3>
+            </div>
+        </div>
+        <h2>comments:</h2>
+        <div class="comment-form">
+            <p class='button' (click)="writeComment()"><i class="far fa-comment"></i> Write a comment...</p>
+        </div>
         <div *ngFor="let comment of comments">
-            <p>{{comment.body}}</p>
+            <app-post-comment-card [comment]="comment"></app-post-comment-card>
         </div>
     </div>
 
     <ng-template #noPosts>
         <ul>
-            <li style="max-width:250px;margin:0 auto;">No Posts to Display</li>
+            <li style="max-width:250px;margin:0 auto;">No comments for this post</li>
         </ul>
     </ng-template>
 </div>

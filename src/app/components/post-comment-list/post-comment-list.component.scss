@@ -1,0 +1,28 @@
+@use '../../../scss/color';
+
+.comment-list {
+  padding-top: 20px;
+}
+.blog-name {
+  padding: 10px;
+  min-height: 150px;
+  border-radius: 10px;
+  border: solid 1px color.$greylight-color;
+}
+
+.comment-form {
+  position: relative;
+  border: solid 1px color.$greylight-color;
+  margin-top: 20px;
+  height: 100px;
+  border-radius: 10px;
+
+  .button {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-left: 20px;
+    color: color.$grey-color;
+    transition: translateY(-50%);
+  }
+}

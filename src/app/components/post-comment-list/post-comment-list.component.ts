@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { PostItem } from 'src/app/models/PostItem.model';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Store, select } from '@ngrx/store';
+import * as frompost from '../../store/reducers/post.reducer'
+import * as fromPostActions from '../../store/actions/post.actions'
 
 
 @Component({
@@ -41,14 +43,16 @@ export class PostCommentListComponent implements OnInit {
   fetchDetails() {
     this.loading$ = this.store.pipe(select(fromComment.getCommentsLoading));
     this.error$ = this.store.pipe(select(fromComment.getCommentsError));
-    this.store.dispatch(new fromCommentActions.LoadCommentAction());
     this.commentItems$ = this.store.pipe(select(fromComment.getComments));
+    this.post$ = this.store.pipe(select(frompost.getCurrentPost))
+    this.store.dispatch(new fromPostActions.LoadPostById(this.postid))
+    this.store.dispatch(new fromCommentActions.LoadCommentByPostAction(this.postid));
     this.subscribeToPostItems()
   }
 
   subscribeToPostItems() {
     this.commentItems$.subscribe(comments => {
-      this.comments = comments.filter(comment => comment.postid == this.postid)
+      this.comments = comments
     })
   }
 }

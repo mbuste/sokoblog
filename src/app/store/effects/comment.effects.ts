@@ -7,7 +7,10 @@ import {
     LoadcommentFailureAction, AddItemAction, AddItemSuccessAction,
     AddItemFailureAction, DeleteItemAction, DeleteItemSuccessAction,
     DeleteItemFailureAction, UpdateComment, UpdateCommentSuccess,
-    UpdateCommentFail
+    UpdateCommentFail,
+    LoadCommentByPostAction,
+    LoadcommentByPostSuccess,
+    LoadCommentByPostFail
 } from '../actions/comment.actions'
 import { of } from 'rxjs';
 import { CommentsService } from '../../services/comments.service';
@@ -29,6 +32,23 @@ export class CommentEffects {
                     )
             ),
         )
+
+        
+    @Effect()
+    loadCommentByPost$ = this.actions$.pipe(
+      ofType<LoadCommentByPostAction>(
+        CommentActionTypes.LOAD_COMMENT_BY_POST
+      ),
+      mergeMap((action: LoadCommentByPostAction) =>
+        this.commentService.getCommentsByPost(action.payload).pipe(
+          map(
+            (data) =>
+              new LoadcommentByPostSuccess(data)
+          ),
+          catchError(err => of(new LoadCommentByPostFail(err)))
+        )
+      )
+    );
 
     @Effect() addCommentItem$ = this.actions$
         .pipe(
