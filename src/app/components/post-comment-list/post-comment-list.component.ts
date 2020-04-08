@@ -8,6 +8,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import * as frompost from '../../store/reducers/post.reducer'
 import * as fromPostActions from '../../store/actions/post.actions'
+import { v4 as uuid } from 'uuid';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class PostCommentListComponent implements OnInit {
   loading$: Observable<Boolean>;
   error$: Observable<Error>
   postItems$: Observable<PostItem[]>;
-
+  editting: boolean = false;
+  typedcomment = ""
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<fromComment.AppState>) { }
 
   ngOnInit(): void {
@@ -45,14 +47,32 @@ export class PostCommentListComponent implements OnInit {
     this.error$ = this.store.pipe(select(fromComment.getCommentsError));
     this.commentItems$ = this.store.pipe(select(fromComment.getComments));
     this.post$ = this.store.pipe(select(frompost.getCurrentPost))
+
     this.store.dispatch(new fromPostActions.LoadPostById(this.postid))
     this.store.dispatch(new fromCommentActions.LoadCommentByPostAction(this.postid));
-    this.subscribeToPostItems()
+
+    this.subscribeToComments()
   }
 
-  subscribeToPostItems() {
+  subscribeToComments() {
     this.commentItems$.subscribe(comments => {
       this.comments = comments
     })
+  }
+
+  writeComment() {
+    this.editting = true;
+  }
+
+  addComment() {  
+    let newId = uuid()
+    let newComment: CommentItem = {
+      id: newId,
+      name: 'comment ' + newId,
+      email: "anonymous",
+      postid: this.postid,
+      body: this.typedcomment
+    }
+    this.store.dispatch(new fromCommentActions.AddItemAction(newComment))
   }
 }

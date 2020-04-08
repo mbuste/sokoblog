@@ -9,6 +9,7 @@ export class CommentsService {
 
   uri = "https://jsonplaceholder.typicode.com/comments"
   post_comment_uri = "https://jsonplaceholder.typicode.com/posts"
+  // post_comment_uri = "http://localhost:3000/post"
   // uri="http://localhost:3000/comments"
   constructor(private http: HttpClient) { }
 

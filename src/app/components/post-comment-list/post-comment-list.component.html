@@ -1,23 +1,28 @@
-<div [class.loading]="(loading$ | async)" id="comment-list" *ngIf="!(error$ | async); else error">
-
-    <div class='container' *ngIf="(comments); else noPosts">
-        <div>
-            <h1>Showing comments for:</h1>
-            <div class='blog-name'>
-                <h1>{{(post$ | async)?.title}}</h1>
-                <h3>author name</h3>
-            </div>
+<div id="comment-list" *ngIf="!(error$ | async); else error">
+    <div class='container comments' *ngIf="(comments); else noComments">
+        <h2>Showing comments for:</h2>
+        <div class='blog-name'>
+            <h1>{{(post$ | async)?.title}}</h1>
+            <h3>author name</h3>
         </div>
         <h2>comments:</h2>
         <div class="comment-form">
-            <p class='button' (click)="writeComment()"><i class="far fa-comment"></i> Write a comment...</p>
+            <form *ngIf="editting; else btn" class="example-form">
+                <mat-form-field class="button example-full-width">
+                    <input [(ngModel)]="typedcomment" name="typedcomment" matInput placeholder="Write comment below...">
+                </mat-form-field>
+                <button (click)="addComment()">submit</button>
+            </form>
+            <ng-template #btn>
+                <p class="button" (click)="writeComment()"><i class="far fa-comment"></i> Write a comment...</p>
+            </ng-template>
         </div>
         <div *ngFor="let comment of comments">
             <app-post-comment-card [comment]="comment"></app-post-comment-card>
         </div>
     </div>
 
-    <ng-template #noPosts>
+    <ng-template #noComments>
         <ul>
             <li style="max-width:250px;margin:0 auto;">No comments for this post</li>
         </ul>

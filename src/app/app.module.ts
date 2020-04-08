@@ -13,12 +13,14 @@ import { reducers } from './store/reducers/index.reducer'
 import { PostEffects } from './store/effects/post.effects'
 import { CommentEffects } from './store/effects/comment.effects'
 import { MaterialModule } from './material.module'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostCommentCardComponent } from './components/post-comment-card/post-comment-card.component';
-
+import { AddPostComponent } from './components/add-post/add-post.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { EditPostFormComponent } from './components/edit-post-form/edit-post-form.component'
 
 
 @NgModule({
@@ -28,6 +30,9 @@ import { PostCommentCardComponent } from './components/post-comment-card/post-co
     routingComponents,
     PostCardComponent,
     PostCommentCardComponent,
+    AddPostComponent,
+    LoginFormComponent,
+    EditPostFormComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { PostCommentCardComponent } from './components/post-comment-card/post-co
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
