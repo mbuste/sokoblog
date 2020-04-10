@@ -22,6 +22,13 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { EditPostFormComponent } from './components/edit-post-form/edit-post-form.component'
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+
+const config = {
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +39,8 @@ import { EditPostFormComponent } from './components/edit-post-form/edit-post-for
     PostCommentCardComponent,
     AddPostComponent,
     LoginFormComponent,
-    EditPostFormComponent
+    EditPostFormComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,10 @@ import { EditPostFormComponent } from './components/edit-post-form/edit-post-for
     MaterialModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "sokoblog-309d1"
+  },
+  "targets": {
+    "sokoblog-309d1": {
+      "hosting": {
+        "sokoblog": [
+          "sokoblog-309d1"
+        ]
+      }
+    }
   }
 }
