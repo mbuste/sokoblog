@@ -18,16 +18,16 @@ export class CommentsService {
     return this.http.get<Array<CommentItem>>(this.uri)
   }
 
-  addCommentItem(postItem: CommentItem) {
-    return this.http.post(this.uri, postItem)
+  addCommentItem(commentItem: CommentItem) {
+    return this.http.post(this.uri, commentItem)
   }
 
   deleteCommentItem(id: string) {
     return this.http.delete(`${this.uri}/${id}`)
   }
 
-  updateCommentItem(postItem: CommentItem) {
-    return this.http.put(`${this.uri}/${postItem.id}`, postItem);
+  updateCommentItem(commentItem: CommentItem) {
+    return this.http.put(`${this.uri}/${commentItem.id}`, commentItem);
   }
 
   getCommentsByPost(id: string) {

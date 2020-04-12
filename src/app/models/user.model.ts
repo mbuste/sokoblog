@@ -6,3 +6,6 @@ export interface User {
     
 }
 
+// export class User {
+//     constructor(public uid: string, public displayName: string) { }
+// }

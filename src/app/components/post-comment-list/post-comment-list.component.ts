@@ -9,7 +9,7 @@ import { Store, select } from '@ngrx/store';
 import * as frompost from '../../store/reducers/post.reducer'
 import * as fromPostActions from '../../store/actions/post.actions'
 import { v4 as uuid } from 'uuid';
-
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-post-comment-list',
@@ -17,7 +17,7 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./post-comment-list.component.scss']
 })
 export class PostCommentListComponent implements OnInit {
-
+  commentemail: any
   postid;
   post$: Observable<PostItem>
   comments: any = []
@@ -27,11 +27,19 @@ export class PostCommentListComponent implements OnInit {
   postItems$: Observable<PostItem[]>;
   editting: boolean = false;
   typedcomment = ""
-  constructor(private route: ActivatedRoute, private router: Router, private store: Store<fromComment.AppState>) { }
+  constructor(private route: ActivatedRoute, public auth: AuthService, private router: Router, private store: Store<fromComment.AppState>) { }
 
   ngOnInit(): void {
     this.getIdFromRoute();
     this.fetchDetails()
+    
+    this.auth.user$.subscribe(user => {
+      if (user) {
+        this.commentemail = user.email
+      } else {
+        this.commentemail = "anonymous"
+      }
+    })
   }
 
   getIdFromRoute() {
@@ -50,7 +58,7 @@ export class PostCommentListComponent implements OnInit {
 
     this.store.dispatch(new fromPostActions.LoadPostById(this.postid))
     this.store.dispatch(new fromCommentActions.LoadCommentByPostAction(this.postid));
-
+    
     this.subscribeToComments()
   }
 
@@ -64,12 +72,13 @@ export class PostCommentListComponent implements OnInit {
     this.editting = true;
   }
 
-  addComment() {  
+  addComment() {
     let newId = uuid()
+
     let newComment: CommentItem = {
       id: newId,
       name: 'comment ' + newId,
-      email: "anonymous",
+      email: this.commentemail,
       postid: this.postid,
       body: this.typedcomment
     }

@@ -5,21 +5,27 @@
             <h1>{{(post$ | async)?.title}}</h1>
             <h3>author name</h3>
         </div>
+
         <h2>comments:</h2>
         <div class="comment-form">
-            <form *ngIf="editting; else btn" class="example-form">
-                <mat-form-field class="button example-full-width">
+
+            <form *ngIf="editting; else btn" class="form">
+                <mat-form-field class="button full-width">
                     <input [(ngModel)]="typedcomment" name="typedcomment" matInput placeholder="Write comment below...">
                 </mat-form-field>
                 <button (click)="addComment()">submit</button>
             </form>
+
             <ng-template #btn>
                 <p class="button" (click)="writeComment()"><i class="far fa-comment"></i> Write a comment...</p>
             </ng-template>
+
         </div>
+
         <div *ngFor="let comment of comments">
             <app-post-comment-card [comment]="comment"></app-post-comment-card>
         </div>
+
     </div>
 
     <ng-template #noComments>
@@ -27,6 +33,7 @@
             <li style="max-width:250px;margin:0 auto;">No comments for this post</li>
         </ul>
     </ng-template>
+
 </div>
 
 <ng-template #error>

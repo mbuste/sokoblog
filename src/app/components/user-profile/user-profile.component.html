@@ -1,0 +1,29 @@
+<div *ngIf="auth.user$ | async; then authenticated else guest">
+
+</div>
+
+<!-- User NOT logged in -->
+<ng-template #guest>
+    <div class='centered'>
+        <h3>Hi there! </h3>
+        <p>Login and do more...</p>
+
+        <button class="btn btn-primary btn-sm" (click)="auth.googleSignin()">
+            <i class="fa fa-google"></i> Sign in with Google
+        </button>
+    </div>
+</ng-template>
+
+<!-- User logged in -->
+<ng-template #authenticated>
+    <div class='centered'>
+
+        <div *ngIf="auth.user$ | async as user">
+            <h3>Hi there, {{ user.displayName }}</h3>
+            <img class="img-fluid" style="width: 150px;" [src]="user.photoURL">
+            <br/>
+
+            <button style="margin-top: 10px;" class="btn btn-sm btn-danger" (click)="auth.signOut()">sign out</button>
+        </div>
+    </div>
+</ng-template>

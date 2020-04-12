@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { PostItem } from '../../models/PostItem.model';
+import { Update } from '@ngrx/entity';
 
 export enum PostActionTypes {
   LOAD_POST_BY_ID = "[Post] Load Post By Id",
@@ -14,7 +15,10 @@ export enum PostActionTypes {
   ADD_ITEM_FAILURE = '[POST] Add Item Failure',
   DELETE_ITEM = '[POST] Delete Item',
   DELETE_ITEM_SUCCESS = '[POST] Delete Item Success',
-  DELETE_ITEM_FAILURE = '[POST] Delete Item Failure'
+  DELETE_ITEM_FAILURE = '[POST] Delete Item Failure',
+  UPDATE_POST = "[POST] Update Post",
+  UPDATE_POST_SUCCESS = "[POST] Update Post Success",
+  UPDATE_POST_FAIL = "[POST] Update Post Fail",
 }
 
 export class LoadPostAction implements Action {
@@ -84,6 +88,20 @@ export class DeleteItemFailureAction implements Action {
   constructor(public payload: Error) { }
 }
 
+export class UpdatePost implements Action {
+  readonly type = PostActionTypes.UPDATE_POST
+  constructor(public payload: PostItem) { }
+}
+
+export class UpdatePostSuccess implements Action {
+  readonly type = PostActionTypes.UPDATE_POST_SUCCESS
+  constructor(public payload: Update<PostItem>) { }
+}
+export class UpdatePostFail implements Action {
+  readonly type = PostActionTypes.UPDATE_POST_FAIL
+  constructor(public payload: Error) { }
+}
+
 export type PostAction = AddItemAction |
   AddItemSuccessAction |
   AddItemFailureAction |
@@ -92,4 +110,5 @@ export type PostAction = AddItemAction |
   DeleteItemFailureAction |
   LoadPostAction |
   LoadpostFailureAction |
-  LoadpostSuccessAction | LoadPostById | LoadPostByIdFail | LoadPostByIdSuccess
+  LoadpostSuccessAction | LoadPostById | LoadPostByIdFail | LoadPostByIdSuccess |
+  UpdatePost | UpdatePostFail | UpdatePostSuccess

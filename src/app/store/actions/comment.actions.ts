@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 import { CommentItem } from '../../models/CommentItem.model';
 import { Update } from '@ngrx/entity';
-import { LoadPostById, LoadPostByIdSuccess, LoadPostByIdFail } from './post.actions';
 
 export enum CommentActionTypes {
     LOAD_COMMENT = '[COMMENT] Load comment',
@@ -89,7 +88,7 @@ export class DeleteItemFailureAction implements Action {
 
 export class UpdateComment implements Action {
     readonly type = CommentActionTypes.UPDATE_COMMENT
-    constructor(public id: string, public payload: CommentItem) { }
+    constructor(public payload: CommentItem) { }
 }
 
 export class UpdateCommentSuccess implements Action {

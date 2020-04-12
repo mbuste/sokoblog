@@ -71,6 +71,14 @@ export function PostReducer(state: PostState = initialState, action: PostAction)
         error: action.payload
       };
     }
+    case PostActionTypes.UPDATE_POST_SUCCESS:
+      return postAdapter.updateOne(action.payload, state);
+    case PostActionTypes.UPDATE_POST_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+
     default:
       return state;
   }
