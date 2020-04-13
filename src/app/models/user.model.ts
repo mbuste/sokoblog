@@ -3,9 +3,30 @@ export interface User {
     displayName: string;
     email: string;
     photoURL: string;
-    
+
 }
 
-// export class User {
-//     constructor(public uid: string, public displayName: string) { }
-// }
+export interface IUser {
+
+    id: 1,
+    name: string,
+    username: string,
+    email: string,
+    address: {
+        street: string,
+        suite: string,
+        city: string,
+        zipcode: string,
+        geo: {
+            lat: string,
+            lng: string
+        }
+    },
+    phone: string,
+    website: string,
+    company: {
+        name: string,
+        catchPhrase: string,
+        bs: string
+    }
+}
