@@ -20,7 +20,7 @@ export class PostDetailComponent implements OnInit {
   posts: any = []
   loading$: Observable<Boolean>;
   error$: Observable<Error>
-  postItems$: Observable<PostItem[]>;
+
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<AppState>) { }
 
@@ -40,15 +40,8 @@ export class PostDetailComponent implements OnInit {
   fetchDetails() {
     this.loading$ = this.store.pipe(select(fromPosts.getPostsLoading));
     this.error$ = this.store.pipe(select(fromPosts.getPostsError));
-    this.store.dispatch(new fromPostActions.LoadPostAction());
     this.store.dispatch(new fromPostActions.LoadPostById(this.postid));
     this.post$ = this.store.pipe(select(fromPosts.getCurrentPost))
-    this.post$.subscribe(val => {
-      if (val) {
-        this.posts = val
-      }
-    })
-    this.postItems$ = this.store.pipe(select(fromPosts.getPosts));
   }
 
   next() {

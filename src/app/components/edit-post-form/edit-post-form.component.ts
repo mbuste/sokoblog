@@ -8,7 +8,7 @@ import { PostItem } from '../../models/postItem.model'
 import * as postActions from '../../store/actions/post.actions'
 import * as fromPost from '../../store/reducers/post.reducer'
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-edit-post-form',
@@ -21,18 +21,18 @@ export class EditPostFormComponent implements OnInit {
   postid: any;
   userid: string;
   post$: Observable<PostItem>
-  posts: any = []
   loading$: Observable<Boolean>;
   error$: Observable<Error>
 
-  constructor(private route: ActivatedRoute, private router: Router, private store: Store<fromPost.AppState>,
+  constructor(private route: ActivatedRoute, private router: Router,
+    private store: Store<fromPost.AppState>, public auth: AuthService,
     private fb: FormBuilder,
 
   ) { }
 
   ngOnInit() {
-    this.fetchDetails()
 
+    this.fetchDetails()
     this.postForm = this.fb.group({
       title: ["", Validators.required],
       body: ["", Validators.required],
@@ -56,11 +56,6 @@ export class EditPostFormComponent implements OnInit {
 
   fetchDetails() {
     this.post$ = this.store.pipe(select(fromPost.getCurrentPost))
-    this.post$.subscribe(val => {
-      if (val) {
-        this.posts = val
-      }
-    })
   }
 
   editPost() {

@@ -16,12 +16,12 @@
   height: 100px;
   border-radius: 10px;
 
-  .button {
+  .comment-input {
     position: absolute;
     top: 50%;
     left: 0;
     margin-left: 20px;
     color: color.$grey-color;
-    transition: translateY(-50%);
+    transform: translateY(-50%);
   }
 }

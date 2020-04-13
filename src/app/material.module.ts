@@ -4,6 +4,7 @@ import {MatCardModule} from '@angular/material/card'
 import {MatPaginatorModule} from '@angular/material/paginator'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
  @NgModule({
   declarations: [],
@@ -12,14 +13,16 @@ import {MatInputModule} from '@angular/material/input'
     MatCardModule, 
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   exports:[
     MatButtonModule,
     MatCardModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ] 
 })
 export class MaterialModule { }

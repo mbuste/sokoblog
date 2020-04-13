@@ -6,7 +6,7 @@
     "start": "concurrently \"ng serve\" \"json-server --watch db.json\" ",
     "build": "ng build",
     "test": "ng test",
-    "deploy": "ng build --prod && firebase deploy --only hosting:sokoblog-309d1",
+    "deploy": "ng build --prod && firebase deploy",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

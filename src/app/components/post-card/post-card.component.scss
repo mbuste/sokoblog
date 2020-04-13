@@ -1,7 +1,7 @@
 @use '../../../scss//color';
 
 .blog-card {
-  max-width: 400px;
+  // max-width: 400px;
   height: 400px;
   text-align: center;
   background-color: color.$greylight-color;
@@ -12,14 +12,14 @@
     left: 0;
     bottom: 0;
     height: 100%;
-}
+  }
   .overlay {
     position: relative;
-    opacity: .9;
+    opacity: 0.9;
     border: none;
     outline: none;
     background: color.$grey-color;
-    padding: 20px;    
+    padding: 20px;
     margin-top: 5%;
     margin-left: 5%;
     height: 90%;
@@ -54,13 +54,12 @@
   border: solid color.$blue-color 2px;
 }
 
-
-@media(max-width:800px){
+@media (max-width: 800px) {
   .blog-card {
     mat-card-title {
       font-size: 30px;
     }
-  
+
     mat-card-content {
       p {
         font-size: 0.8rem;
@@ -70,24 +69,21 @@
   }
 }
 
-@media (min-width: 800px){
-.blog-card {
-  
-  mat-card-title {
-    color: color.$main-accent;
-    font-size: 30px;
-  }
+@media (min-width: 800px) {
+  .blog-card {
+    max-width: 400px;
+    height: 400px;
 
-  mat-card-content {
-    p {
-      font-size: 0.8rem;
-      letter-spacing: 0.2rem;
+    mat-card-title {
+      color: color.$main-accent;
+      font-size: 30px;
+    }
+
+    mat-card-content {
+      p {
+        font-size: 0.8rem;
+        letter-spacing: 0.2rem;
+      }
     }
   }
-
 }
-
-
-}
-
-

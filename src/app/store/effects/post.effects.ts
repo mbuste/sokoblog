@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
-import { LoadPostAction, PostActionTypes, LoadpostSuccessAction, LoadpostFailureAction, AddItemAction, AddItemSuccessAction, AddItemFailureAction, DeleteItemAction, DeleteItemSuccessAction, DeleteItemFailureAction, LoadPostById, LoadPostByIdSuccess, LoadPostByIdFail, UpdatePost, UpdatePostFail } from '../actions/post.actions'
+import { LoadPostAction, PostActionTypes, LoadpostSuccessAction, LoadpostFailureAction, AddItemAction, AddItemSuccessAction, AddItemFailureAction, DeleteItemAction, DeleteItemSuccessAction, DeleteItemFailureAction, LoadPostById, LoadPostByIdSuccess, LoadPostByIdFail, UpdatePost, UpdatePostFail, UpdatePostSuccess } from '../actions/post.actions'
 import { of } from 'rxjs';
 import { PostService } from '../../services/post.service';
-import { UpdateCommentSuccess } from '../actions/comment.actions';
 import { PostItem } from 'src/app/models/PostItem.model';
 
 @Injectable()
@@ -31,7 +30,7 @@ export class PostEffects {
       mergeMap(
         (data) => this.postService.updatePostItem(data.payload)
           .pipe(
-            map((updatePost: PostItem) => new UpdateCommentSuccess({
+            map((updatePost: PostItem) => new UpdatePostSuccess({
               id: updatePost.id,
               changes: updatePost
 

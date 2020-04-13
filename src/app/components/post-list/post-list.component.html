@@ -1,19 +1,29 @@
-<!-- <app-add-post></app-add-post> -->
-<app-edit-post-form></app-edit-post-form>
-<div [class.loading]="(loading$ | async)" id="post-list" *ngIf="!(error$ | async); else error">
-    <h2>
+
+<!-- Forms for editting and adding posts -->
+<div class="row" >
+    <app-add-post class='col-md-6'></app-add-post>
+    <app-edit-post-form class='col-md-6'></app-edit-post-form>
+</div>
+
+<!-- if there is no error display -->
+<div style="margin-top: 40px;" id="post-list" *ngIf="!(error$ | async); else error">
+    <h2 class="text-center">
         Post List
     </h2>
 
+    <!-- list of posts in card forms -->
+
     <div class='row' *ngIf="(postItems$ | async); else noPosts">
-        <div class='col-md-4' *ngFor="let post of postItems$ | async">
+        <div style=" margin-top: 20px;" class='col-sm-12 col-md-6 col-lg-4' *ngFor="let post of (postItems$ | async)">
             <app-post-card [post]="post"></app-post-card>
             <div class="icons" *ngIf="auth.user$ | async">
-                <button (click)="editPost(post.id)"><i class="fas fa-pen"></i></button>
-                <button (click)="deletePost(post.id)"><i class="far fa-trash-alt"></i></button>
+                <button (click)="editPost(post.id)"><i class="fas fa-pen text-warning"></i></button>
+                <button (click)="deletePost(post.id)"><i class="far fa-trash-alt text-danger"></i></button>
             </div>
         </div>
     </div>
+
+    <!-- Indicator for empty list -->
 
     <ng-template #noPosts>
         <ul>
@@ -22,6 +32,8 @@
     </ng-template>
 
 </div>
+
+<!-- Notification for error in API call -->
 
 <ng-template #error>
     <h2 class='alert-danger'>{{(error$ | async)?.message}}</h2>

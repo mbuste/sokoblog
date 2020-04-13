@@ -32,7 +32,7 @@ export class PostService {
   }
 
   updatePostItem(postItem: PostItem) {
-    return this.http.put(`${this.POST_URL}/${postItem.id}`, postItem);
+    return this.http.patch(`${this.POST_URL}/${postItem.id}`, postItem);
   }
 
 }

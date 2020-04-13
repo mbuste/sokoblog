@@ -1,24 +1,29 @@
-<div class='container-fluid blog-details' [class.loading]="(loading$ | async)" id="post-list" *ngIf="!(error$ | async); else error">
+<div class='container blog-details' [class.loading]="(loading$ | async)" id="post-list"
+    *ngIf="!(error$ | async); else error">
 
-    <div *ngIf="(posts); else noPosts">
-        <h1 class="title"> {{posts.title}}</h1><br />
-        <p>{{posts.body}}</p>
+    <!-- Display of post details -->
+
+    <div *ngIf="(post$ | async); else noPosts">
+        <h1 class="title"> {{(post$ | async)?.title}}</h1><br />
+        <p>{{(post$ | async)?.body}}</p>
         <button class='responses-btn' (click)="viewComments()">responses</button>
     </div>
 
-    <ng-template #noPosts>
-        <ul>
-            <li style="max-width:250px;margin:0 auto;">Loading Post details</li>
-        </ul>
-    </ng-template>
+    <!-- Spinner as details load -->
 
+    <ng-template #noPosts>
+        <mat-spinner></mat-spinner>
+    </ng-template>
 </div>
 
+<!-- error notification incase of error in API call -->
 <ng-template #error>
     <h2 class='alert-danger'>{{(error$ | async)?.message}}</h2>
 </ng-template>
+
+<!-- navigation buttons -->
 <div class='container post-nav'>
-    <button (click)="next()"><i class="fas fa-step-forward"></i>  next</button>
-    <button (click)="previous()"><i class="fas fa-step-backward"></i>  previous</button>
-    <button (click)="backToList()"><i class="fas fa-hand-point-left"></i>  Back to List</button>
+    <button (click)="next()"><i class="fas fa-step-forward"></i> next</button>
+    <button (click)="previous()"><i class="fas fa-step-backward"></i> previous</button>
+    <button (click)="backToList()"><i class="fas fa-hand-point-left"></i> Back to List</button>
 </div>

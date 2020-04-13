@@ -19,7 +19,7 @@ import { AppRoutingModule, routingComponents } from './app.routing';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostCommentCardComponent } from './components/post-comment-card/post-comment-card.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
+
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -46,7 +46,6 @@ const config = {
     PostCardComponent,
     PostCommentCardComponent,
     AddPostComponent,
-    LoginFormComponent,
     EditPostFormComponent,
   ],
   imports: [

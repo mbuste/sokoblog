@@ -1,5 +1,7 @@
 <div id="comment-list" *ngIf="!(error$ | async); else error">
-    <div class='container comments' *ngIf="(comments); else noComments">
+
+    <!-- showing title of blog and authors name -->
+    <div class='container comments' *ngIf="(commentItems$ | async); else noComments">
         <h2>Showing comments for:</h2>
         <div class='blog-name'>
             <h1>{{(post$ | async)?.title}}</h1>
@@ -7,35 +9,39 @@
         </div>
 
         <h2>comments:</h2>
-        <div class="comment-form">
 
-            <form *ngIf="editting; else btn" class="form">
-                <mat-form-field class="button full-width">
-                    <input [(ngModel)]="typedcomment" name="typedcomment" matInput placeholder="Write comment below...">
+        <!-- form for adding new comment -->
+        <div class="comment-form">
+            <form *ngIf="editting; else btn" class="comment-input form">
+                <mat-form-field class="full-width">
+                    <span>
+                        <input [(ngModel)]="typedcomment" name="typedcomment" matInput
+                            placeholder="Write comment below...">
+                        <i (click)="addComment()" class="fas fa-paper-plane" style="float: right;"></i>
+                    </span>
                 </mat-form-field>
-                <button (click)="addComment()">submit</button>
             </form>
 
             <ng-template #btn>
-                <p class="button" (click)="writeComment()"><i class="far fa-comment"></i> Write a comment...</p>
+                <p class="comment-input" (click)="writeComment()"><i class="far fa-comment"></i> Write a comment...</p>
             </ng-template>
-
         </div>
 
-        <div *ngFor="let comment of comments">
+        <!-- displaying the list of comments -->
+        <div *ngFor="let comment of (commentItems$ | async)">
             <app-post-comment-card [comment]="comment"></app-post-comment-card>
         </div>
-
     </div>
 
+    <!-- notification for empty comment list -->
     <ng-template #noComments>
         <ul>
             <li style="max-width:250px;margin:0 auto;">No comments for this post</li>
         </ul>
     </ng-template>
-
 </div>
 
+<!-- Error display incase of API error -->
 <ng-template #error>
     <h2 class='alert-danger'>{{(error$ | async)?.message}}</h2>
 </ng-template>
