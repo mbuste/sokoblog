@@ -5,7 +5,7 @@
         <h2>Showing comments for:</h2>
         <div class='blog-name'>
             <h1>{{(post$ | async)?.title}}</h1>
-            <h3>author name</h3>
+            by: <h2>{{(author$ | async)?.name}}</h2>
         </div>
 
         <h2>comments:</h2>

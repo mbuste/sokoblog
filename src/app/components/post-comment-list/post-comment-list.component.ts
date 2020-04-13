@@ -13,6 +13,9 @@ import * as fromComment from '../../store/reducers/comment.reducer'
 
 import * as frompost from '../../store/reducers/post.reducer'
 import * as fromPostActions from '../../store/actions/post.actions'
+import * as fromUserActions from '../../store/actions/user.actions'
+import * as fromUser from '../../store/reducers/user.reducer'
+import { IUser } from '../../models/user.model'
 
 import { AuthService } from '../../services/auth.service'
 
@@ -22,7 +25,7 @@ import { AuthService } from '../../services/auth.service'
   styleUrls: ['./post-comment-list.component.scss']
 })
 export class PostCommentListComponent implements OnInit {
-
+  
   commentemail: any
   postid;
   post$: Observable<PostItem>
@@ -31,6 +34,8 @@ export class PostCommentListComponent implements OnInit {
   error$: Observable<Error>
   editting: boolean = false;
   typedcomment = ""
+  userid: string;
+  author$: Observable<IUser>;
 
   constructor(
     private route: ActivatedRoute,
@@ -64,9 +69,15 @@ export class PostCommentListComponent implements OnInit {
     this.error$ = this.store.pipe(select(fromComment.getCommentsError));
     this.commentItems$ = this.store.pipe(select(fromComment.getComments));
     this.post$ = this.store.pipe(select(frompost.getCurrentPost))
+    this.post$.subscribe(val => {
+      if (val) {
+        this.store.dispatch(new fromUserActions.LoadUserById(val.userId))
+      }
+    })
 
     this.store.dispatch(new fromPostActions.LoadPostById(this.postid))
     this.store.dispatch(new fromCommentActions.LoadCommentByPostAction(this.postid));
+    this.author$ = this.store.pipe(select(fromUser.getCurrentUser))
   }
 
   addComment() {

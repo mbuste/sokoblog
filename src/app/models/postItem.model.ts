@@ -1,6 +1,6 @@
 export interface PostItem {
     id?: string;
-    userid: string;
+    userId: string;
     title:string;
     body:string;
  }

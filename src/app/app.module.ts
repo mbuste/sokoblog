@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { reducers } from './store/reducers/index.reducer'
 import { PostEffects } from './store/effects/post.effects'
 import { CommentEffects } from './store/effects/comment.effects'
+import { UserEffects } from './store/effects/user.effects'
 import { MaterialModule } from './material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,7 +20,6 @@ import { AppRoutingModule, routingComponents } from './app.routing';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostCommentCardComponent } from './components/post-comment-card/post-comment-card.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
-
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -51,7 +51,7 @@ const config = {
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([PostEffects, CommentEffects]),
+    EffectsModule.forRoot([PostEffects, CommentEffects, UserEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule,

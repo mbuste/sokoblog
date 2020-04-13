@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers/comment.reducer';
 import * as fromPostActions from 'src/app/store/actions/post.actions';
-import * as fromPosts from '../../store/reducers/post.reducer'
+import * as fromUserActions from '../../store/actions/user.actions' 
 
 
 @Component({
@@ -29,6 +29,7 @@ export class PostCardComponent implements OnInit {
 
   onSelect(post) {
     this.store.dispatch(new fromPostActions.LoadPostById(post.id))
+    this.store.dispatch(new fromUserActions.LoadUserById(post.userid))
     this.router.navigate([post.id],  { relativeTo: this.route } )
   }
 

@@ -49,7 +49,7 @@ export class EditPostFormComponent implements OnInit {
           body: currentPost.body,
         });
         this.postid = currentPost.id
-        this.userid = currentPost.userid
+        this.userid = currentPost.userId
       }
     })
   }
@@ -61,7 +61,7 @@ export class EditPostFormComponent implements OnInit {
   editPost() {
     const updatedPost: PostItem = {
       id: this.postid,
-      userid: this.userid,
+      userId: this.userid,
       title: this.postForm.get("title").value,
       body: this.postForm.get("body").value
     };

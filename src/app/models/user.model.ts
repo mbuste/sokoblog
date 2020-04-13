@@ -8,7 +8,7 @@ export interface User {
 
 export interface IUser {
 
-    id: 1,
+    id?: string,
     name: string,
     username: string,
     email: string,

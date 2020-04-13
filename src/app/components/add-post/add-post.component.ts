@@ -38,7 +38,7 @@ export class AddPostComponent implements OnInit {
     this.id = uuid();
     const newPost: PostItem = {
       id: this.id,
-      userid: this.userid,
+      userId: this.userid,
       title: this.postForm.get("title").value,
       body: this.postForm.get("body").value
     }
