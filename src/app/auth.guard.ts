@@ -11,9 +11,7 @@ export class AuthGuard implements CanActivate {
   
   constructor(private auth: AuthService, private router: Router){}
   
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(): Observable<boolean> {
 
     return this.auth.user$.pipe(
       take(1),
@@ -21,6 +19,9 @@ export class AuthGuard implements CanActivate {
       tap(loggedIn=>{
         if(!loggedIn){
           this.router.navigate(['/'])
+          return false;
+        }else{
+          return true;
         }
       })
     )

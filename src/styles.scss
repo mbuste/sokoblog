@@ -1,3 +1,4 @@
+@use './scss//color';
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import "~@angular/material/theming";
@@ -42,23 +43,32 @@ body {
 
 button {
   transform: 0.5s;
-  color: #000000;
-  background-color: #ffffff;
-  border: solid 1px #000000;
+  color: color.$black-color;
+  background-color: color.$white-color;
+  border: solid 1px color.$black-color;
   border-radius: 5px;
   padding: 5px;
 }
 
 button:hover {
-  background-color: #ff5224;
-  color: #ffffff;
+  background-color: color.$main-accent;
+  color: color.$white-color;
 }
 
 .form {
   min-width: 150px;
   width: 100%;
+
+  .full-width {
+    width: 90%;
+  }
+  
 }
 
-.full-width {
-  width: 90%;
+
+.centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
