@@ -25,7 +25,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-
 const config = {
   apiKey: "AIzaSyA3TxUGCDi7TBsZlqu01fapn8ONnb6BhJ8",
   authDomain: "sokoblog-309d1.firebaseapp.com",

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
-import {IUser} from '../models/user.model'
+import { HttpClient } from '@angular/common/http'
+import { IUser } from '../models/user.model'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private uri = "https://jsonplaceholder.typicode.com/users"
+  uri = "https://jsonplaceholder.typicode.com/users"
 
 
   constructor(private http: HttpClient) { }
@@ -25,7 +25,7 @@ export class UserService {
     return this.http.delete(`${this.uri}/${id}`)
   }
 
-  getUserById(payload: string):Observable<IUser> {
+  getUserById(payload: string): Observable<IUser> {
     return this.http.get<IUser>(`${this.uri}/${payload}`);
   }
 

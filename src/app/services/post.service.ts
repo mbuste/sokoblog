@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  private POST_URL = "https://jsonplaceholder.typicode.com/posts"
+  POST_URL = "https://jsonplaceholder.typicode.com/posts"
   // private POST_URL = "http://localhost:3000/post"
 
   constructor(private http: HttpClient) { }
