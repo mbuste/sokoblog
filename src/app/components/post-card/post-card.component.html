@@ -1,7 +1,6 @@
-<mat-card [class.selected]="isSelected(post)" style="overflow: hidden;" class="blog-card">
-    <img style="position: absolute; top: -5px; left:-5px; height: 110%; width: 110%; "
-    class="img-fluid" src='../../../assets/typewrite.jpg'/>
-    <div class="overlay">        
+<mat-card [class.selected]="isSelected(post)" class="blog-card">
+    <img src='../../../assets/typewrite.jpg' class="img-fluid bg-img"  />
+    <div class="overlay">
         <mat-card-header>
             <mat-card-title>{{post.title.substring(0,15)}}</mat-card-title>
         </mat-card-header>

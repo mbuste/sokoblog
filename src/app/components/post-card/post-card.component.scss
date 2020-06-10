@@ -1,17 +1,18 @@
-@use '../../../scss//color';
+@use '../../../scss/color';
 
 .blog-card {
-  // max-width: 400px;
+  position: relative;
   height: 400px;
   text-align: center;
   background-color: color.$greylight-color;
+  overflow: hidden;
 
   .bg-img {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
-    height: 100%;
+    width: inherit;
   }
   .overlay {
     position: relative;

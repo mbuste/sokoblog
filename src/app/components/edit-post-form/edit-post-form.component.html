@@ -3,12 +3,14 @@
     <form [formGroup]="postForm">
         <div class="form-group">
             <label>title</label>
-            <input type='text' formControlName="title" class="form-control" />
+            <input type='text' [class.is-invalid]="postForm.get('title').invalid && postForm.get('title').touched" formControlName="title" class="form-control" />
+            <small [class.d-none]="postForm.get('title').valid || postForm.get('title').untouched" class="text-danger">Title is required</small>
         </div>
 
         <div class="form-group">
             <label>body</label>
-            <textarea type='text' formControlName="body" class="form-control"></textarea>
+            <textarea [class.is-invalid]="postForm.get('body').invalid && postForm.get('body').touched" formControlName="body" class="form-control" type='text' formControlName="body" class="form-control"></textarea>
+            <small [class.d-none]="postForm.get('body').valid || postForm.get('body').untouched" class="text-danger">Body is required</small>
         </div>
 
         <button type="submit" (click)="editPost()" class='btn btn-primary btn-sm'>edit post</button>
