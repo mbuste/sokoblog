@@ -24,6 +24,7 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const config = {
   apiKey: "AIzaSyA3TxUGCDi7TBsZlqu01fapn8ONnb6BhJ8",
@@ -61,6 +62,7 @@ const config = {
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
