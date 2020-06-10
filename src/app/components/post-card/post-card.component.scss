@@ -1,52 +1,36 @@
 @use '../../../scss/color';
+@use '../../../scss/mixins';
 
 .blog-card {
   position: relative;
   height: 400px;
-  text-align: center;
   background-color: color.$greylight-color;
   overflow: hidden;
 
   .bg-img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    @include mixins.position-absolute(0, 0);
     bottom: 0;
-    width: inherit;
   }
   .overlay {
     position: relative;
-    opacity: 0.9;
-    border: none;
-    outline: none;
-    background: color.$grey-color;
+    margin: 5%;
     padding: 20px;
-    margin-top: 5%;
-    margin-left: 5%;
-    height: 90%;
     width: 90%;
+    height: 90%;
+    opacity: 0.9;
+    background: color.$grey-color;
   }
   mat-card-title {
     color: color.$main-accent;
-    font-size: 30px;
   }
 
   mat-card-content {
     color: color.$white-color;
-    p {
-      padding-left: 10px;
-      padding-top: 40px;
-      text-align: left;
-      text-justify: auto;
-      font-size: 0.8rem;
-      letter-spacing: 0.2rem;
-    }
+    padding: 10px;
   }
 
   .details-btn {
-    position: absolute;
-    top: 80%;
-    left: 50%;
+    @include mixins.position-absolute(80%, 50%);
     transform: translateX(-50%);
   }
 }
@@ -55,36 +39,9 @@
   border: solid color.$blue-color 2px;
 }
 
-@media (max-width: 800px) {
-  .blog-card {
-    mat-card-title {
-      font-size: 30px;
-    }
-
-    mat-card-content {
-      p {
-        font-size: 0.8rem;
-        letter-spacing: 0.2rem;
-      }
-    }
-  }
-}
-
-@media (min-width: 800px) {
+@media (min-width: 1200px) {
   .blog-card {
     max-width: 400px;
     height: 400px;
-
-    mat-card-title {
-      color: color.$main-accent;
-      font-size: 30px;
-    }
-
-    mat-card-content {
-      p {
-        font-size: 0.8rem;
-        letter-spacing: 0.2rem;
-      }
-    }
   }
 }
