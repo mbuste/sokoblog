@@ -21,7 +21,8 @@
 .post-nav {
   display: grid;
   margin-top: 50px;
-  @include mixins.center;
+  @include mixins.position-absolute(auto, 50%);
+  transform: translateX(-50%);
 }
 
 .post-nav {
