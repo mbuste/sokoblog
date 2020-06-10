@@ -8,7 +8,11 @@
     "test": "ng test",
     "deploy": "ng build --prod && firebase deploy",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev:ssr": "ng run sokoblog:serve-ssr",
+    "serve:ssr": "node dist/sokoblog/server/main.js",
+    "build:ssr": "ng build --prod && ng run sokoblog:server:production",
+    "prerender": "ng run sokoblog:prerender"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +32,7 @@
     "@ngrx/entity": "^9.0.0",
     "@ngrx/store": "^9.0.0",
     "@ngrx/store-devtools": "^9.0.0",
+    "@nguniversal/express-engine": "^9.1.1",
     "concurrently": "^5.1.0",
     "express": "4.17.1",
     "firebase": "^7.13.2",
@@ -43,6 +48,8 @@
     "@angular/cli": "~9.1.7",
     "@angular/compiler-cli": "~9.1.10",
     "@angular/language-service": "~9.1.10",
+    "@nguniversal/builders": "^9.1.1",
+    "@types/express": "^4.17.0",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",

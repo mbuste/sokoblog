@@ -48,7 +48,7 @@ const config = {
     EditPostFormComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([PostEffects, CommentEffects, UserEffects]),
     HttpClientModule,
